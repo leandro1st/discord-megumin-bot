@@ -34,6 +34,11 @@ async def help(ctx):
             "`!all`\nMention @everyone\n\n" \
             "`!pat`\nPat a member\n\n" \
             "`!poke`\nPoke a member\n\n" \
+            "`!kiss`\nKiss a member\n\n" \
+            "`!neko`\nNeko pic\n\n" \
+            "`!baka`\nBaka\n\n" \
+            "`!hug`\nHug a member\n\n" \
+            "`!cuddle`\nCuddle a member\n\n" \
             "`!random <min>, <max>`\nPick a random number from `min` to `max`\n\n" \
             "`!junior`\nJunior zuado\n\n" \
             "`!userinfo (optional member)`\nDisplay user info\n\n" \
@@ -1399,6 +1404,164 @@ async def poke(ctx, member: discord.Member = None):
 # Checking if arguments are valid
 @poke.error
 async def poke_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed(
+            color = discord.Color(0xff0000),
+            timestamp = datetime.utcnow(),
+            description = "**Mencione um membro do canal! <a:rikkaBongo:697839129257312286>**"
+        )
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+
+
+# !kiss - kiss a member
+@client.command()
+async def kiss(ctx, member: discord.Member = None):
+    target = "kiss"
+    
+    if member:
+        embed = discord.Embed(
+            color = discord.Color(0xB8B8B8),
+            timestamp = datetime.utcnow(),
+            description = "<@!{}> beija <@!{}>".format(ctx.message.author.id, member.id)
+        )
+        embed.set_image(url=nekos.img(target))
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+    else:
+        embed = discord.Embed(
+            color = discord.Color(0xff0000),
+            timestamp = datetime.utcnow(),
+            description = "**Preciso de um usuário! <a:rikkaBongo:697839129257312286>**"
+        )
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+
+# Checking if arguments are valid
+@kiss.error
+async def kiss_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed(
+            color = discord.Color(0xff0000),
+            timestamp = datetime.utcnow(),
+            description = "**Mencione um membro do canal! <a:rikkaBongo:697839129257312286>**"
+        )
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+
+
+# !neko - some random neko pic
+@client.command()
+async def neko(ctx):
+    target = "neko"
+    
+    embed = discord.Embed(
+        color = discord.Color(0xB8B8B8),
+        timestamp = datetime.utcnow(),
+    )
+    embed.set_image(url=nekos.img(target))
+    embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+    await ctx.send(embed=embed)
+
+
+# !baka - member is baka
+@client.command()
+async def baka(ctx, member: discord.Member = None):
+    target = "baka"
+    
+    if member:
+        embed = discord.Embed(
+            color = discord.Color(0xB8B8B8),
+            timestamp = datetime.utcnow(),
+            description = "<@!{}>, you baka!".format(member.id)
+        )
+        embed.set_image(url=nekos.img(target))
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+    else:
+        embed = discord.Embed(
+            color = discord.Color(0xff0000),
+            timestamp = datetime.utcnow(),
+            description = "**Preciso de um usuário! <a:rikkaBongo:697839129257312286>**"
+        )
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+
+# Checking if arguments are valid
+@baka.error
+async def baka_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed(
+            color = discord.Color(0xff0000),
+            timestamp = datetime.utcnow(),
+            description = "**Mencione um membro do canal! <a:rikkaBongo:697839129257312286>**"
+        )
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+
+
+# !hug - hug a member
+@client.command()
+async def hug(ctx, member: discord.Member = None):
+    target = "hug"
+    
+    if member:
+        embed = discord.Embed(
+            color = discord.Color(0xB8B8B8),
+            timestamp = datetime.utcnow(),
+            description = "<@!{}> hugs <@!{}>".format(ctx.message.author.id, member.id)
+        )
+        embed.set_image(url=nekos.img(target))
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+    else:
+        embed = discord.Embed(
+            color = discord.Color(0xff0000),
+            timestamp = datetime.utcnow(),
+            description = "**Preciso de um usuário! <a:rikkaBongo:697839129257312286>**"
+        )
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+
+# Checking if arguments are valid
+@hug.error
+async def hug_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed(
+            color = discord.Color(0xff0000),
+            timestamp = datetime.utcnow(),
+            description = "**Mencione um membro do canal! <a:rikkaBongo:697839129257312286>**"
+        )
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+
+
+# !cuddle - cuddle a member
+@client.command()
+async def cuddle(ctx, member: discord.Member = None):
+    target = "cuddle"
+    
+    if member:
+        embed = discord.Embed(
+            color = discord.Color(0xB8B8B8),
+            timestamp = datetime.utcnow(),
+            description = "<@!{}> cuddles <@!{}>".format(ctx.message.author.id, member.id)
+        )
+        embed.set_image(url=nekos.img(target))
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+    else:
+        embed = discord.Embed(
+            color = discord.Color(0xff0000),
+            timestamp = datetime.utcnow(),
+            description = "**Preciso de um usuário! <a:rikkaBongo:697839129257312286>**"
+        )
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+
+# Checking if arguments are valid
+@cuddle.error
+async def cuddle_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(
             color = discord.Color(0xff0000),

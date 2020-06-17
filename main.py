@@ -5,7 +5,7 @@ from itertools import cycle
 status1 = ["!help", "com lolis", "Terraria", "osu!", "Visual Studio Code", "Nekopara"]
 status2 = ["conhecimento", "osu!", "!help"]
 status3 = ["Lo-Fi", "Renai Circulation", "your cries", "Spotify"]
-status4 = ["você", "Sword Art Online", "Koe no Katachi", "Made in Abyss", "Kyoukai no Kanata", "Boku no Hero Academia", "Kimi no Na wa", "anime", "	Re:Zero kara Hajimeru Isekai Seikatsu", "Charlotte"]
+status4 = ["você", "Sword Art Online", "Koe no Katachi", "Made in Abyss", "Kyoukai no Kanata", "Boku no Hero Academia", "Kimi no Na wa", "anime", "	Re:Zero kara Hajimeru Isekai Seikatsu", "Charlotte", "Tenki no Ko", "Machikado Mazoku", "Karakai Jouzu no Takagi-san"]
 # Order --> playing, streaming, listening, watching
 
 async def change_status():
