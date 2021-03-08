@@ -32,19 +32,20 @@ async def help(ctx):
         description = "`!help`\nWelp\n\n" \
             "`!hello`\nSup\n\n" \
             "`!all`\nMention @everyone\n\n" \
-            "`!pat`\nPat a member\n\n" \
-            "`!poke`\nPoke a member\n\n" \
-            "`!kiss`\nKiss a member\n\n" \
+            "`!pat <member>`\nPat a member\n\n" \
+            "`!poke <member>`\nPoke a member\n\n" \
+            "`!kiss <member>`\nKiss a member\n\n" \
             "`!neko`\nNeko pic\n\n" \
-            "`!baka`\nBaka\n\n" \
-            "`!hug`\nHug a member\n\n" \
-            "`!cuddle`\nCuddle a member\n\n" \
+            "`!baka <member>`\nBaka\n\n" \
+            "`!hug <member>`\nHug a member\n\n" \
+            "`!cuddle <member>`\nCuddle a member\n\n" \
             "`!random <min>, <max>`\nPick a random number from `min` to `max`\n\n" \
             "`!junior`\nJunior zuado\n\n" \
             "`!userinfo (optional member)`\nDisplay user info\n\n" \
-            "`!avatar (optional member)`\nDisplay user's pfp\n\n" \
+            "`!avatar (optional member)`\nDisplay user's avatar\n\n" \
+            "`!pfp (optional member)`\nDisplay user's pfp\n\n" \
             "`!dm <member> <message>`\nSend a DM to someone\n\n" \
-            "`!rename <member> <new name>`\nSend a DM to someone\n\n" \
+            "`!rename <member> <new name>`\nChange user nickname\n\n" \
             "`!now`\nDisplay current datetime\n\n" \
             "`!osu <username/id>`\nDisplay osu player's info\n\n" \
             "`!top10 <username/id>`\nDisplay Top 10 Plays\n\n" \
@@ -68,7 +69,7 @@ async def help(ctx):
     await ctx.send(embed=embed)
 
 
-# !avatar - display user's pfp 
+# !avatar - display user's avatar 
 @client.command()
 async def avatar(ctx, member: discord.Member=None):
     # If member name is given
@@ -108,6 +109,56 @@ async def avatar(ctx, member: discord.Member=None):
 # Checking if arguments are valid
 @avatar.error
 async def avatar_error(ctx, error):
+    if isinstance(error, commands.BadArgument):
+        embed = discord.Embed(
+            color = discord.Color(0xff0000),
+            timestamp = datetime.utcnow(),
+            description = "**Mencione um membro do canal! <a:rikkaBongo:697839129257312286>**"
+        )
+        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        await ctx.send(embed=embed)
+
+
+# !pfp - display user's pfp 
+@client.command()
+async def pfp(ctx, member: discord.Member=None):
+    # If member name is given
+    if member != None:
+        # if member is a bot
+        if member.bot:
+            show_pfp = discord.Embed(
+                color = discord.Color.dark_blue(),
+                title = 'Avatar de {0} (BOT)'.format(member.name),
+                url = '{}'.format(member.avatar_url_as(format=None, static_format='png')).split("?")[0],
+                timestamp = datetime.utcnow()
+            )
+        else:
+            show_pfp = discord.Embed(
+                color = discord.Color(0x0087FF),
+                title = 'Avatar de {0}'.format(member.name),
+                url = '{}'.format(member.avatar_url_as(format=None, static_format='png')).split("?")[0],
+                timestamp = datetime.utcnow()
+            )
+
+        show_pfp.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        show_pfp.set_image(url='{}'.format(member.avatar_url_as(format=None, static_format='png', size=4096)))
+        await ctx.send(embed=show_pfp)
+    # else member is himself
+    else:
+        show_pfp = discord.Embed(
+            color = discord.Color.dark_blue(),
+            title = 'Avatar de {0}'.format(ctx.message.author.name),
+            url = '{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0],
+            timestamp = datetime.utcnow()
+        )
+
+        show_pfp.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+        show_pfp.set_image(url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png', size=4096)))
+        await ctx.send(embed=show_pfp)
+
+# Checking if arguments are valid
+@pfp.error
+async def pfp_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         embed = discord.Embed(
             color = discord.Color(0xff0000),
@@ -1473,7 +1524,7 @@ async def baka(ctx, member: discord.Member = None):
         embed = discord.Embed(
             color = discord.Color(0xB8B8B8),
             timestamp = datetime.utcnow(),
-            description = "<@!{}>, you baka!".format(member.id)
+            description = "<@!{}>, b-baka!".format(member.id)
         )
         embed.set_image(url=nekos.img(target))
         embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
