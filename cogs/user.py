@@ -19,17 +19,17 @@ class User(commands.Cog, name="Usuário"):
             # if member is a bot
             if member.bot:
                 embed = discord.Embed(
-                    color=discord.Color.dark_blue(),
-                    title='Avatar de {0} (BOT)'.format(member.name),
-                    url='{}'.format(member.avatar_url_as(format=None, static_format='png')).split("?")[0],
-                    timestamp=datetime.utcnow()
+                    color = discord.Color.dark_blue(),
+                    title = 'Avatar de {0} (BOT)'.format(member.name),
+                    url = '{}'.format(member.avatar_url_as(format=None, static_format='png')).split("?")[0],
+                    timestamp = datetime.utcnow()
                 )
             else:
                 embed = discord.Embed(
-                    color=discord.Color(0x0087FF),
-                    title='Avatar de {0}'.format(member.name),
-                    url='{}'.format(member.avatar_url_as(format=None, static_format='png')).split("?")[0],
-                    timestamp=datetime.utcnow()
+                    color = discord.Color(0x0087FF),
+                    title = 'Avatar de {0}'.format(member.name),
+                    url = '{}'.format(member.avatar_url_as(format=None, static_format='png')).split("?")[0],
+                    timestamp = datetime.utcnow()
                 )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -38,11 +38,10 @@ class User(commands.Cog, name="Usuário"):
         # else member is himself
         else:
             embed = discord.Embed(
-                color=discord.Color.dark_blue(),
-                title='Avatar de {0}'.format(ctx.message.author.name),
-                url='{}'.format(ctx.message.author.avatar_url_as(
-                    format=None, static_format='png')).split("?")[0],
-                timestamp=datetime.utcnow()
+                color = discord.Color.dark_blue(),
+                title = 'Avatar de {0}'.format(ctx.message.author.name),
+                url = '{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0],
+                timestamp = datetime.utcnow()
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -54,9 +53,9 @@ class User(commands.Cog, name="Usuário"):
     async def avatar_error(self, ctx, error):
         if isinstance(error, commands.BadArgument):
             embed = discord.Embed(
-                color=discord.Color(0xff0000),
-                timestamp=datetime.utcnow(),
-                description="**Mencione um membro do canal! <a:rikkaBongo:697839129257312286>**"
+                color = discord.Color(0xff0000),
+                timestamp = datetime.utcnow(),
+                description = "**Mencione um membro do canal! <a:rikkaBongo:697839129257312286>**"
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))

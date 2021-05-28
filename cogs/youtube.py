@@ -24,7 +24,7 @@ class Youtube(commands.Cog, name="YouTube"):
                 # Connecting the bot if its not connected to a voice channel
                 if ctx.voice_client is None:
                     await channel.connect()
-                # Moving the bot
+                # Moving the bot if already in some vc
                 else:
                     await ctx.voice_client.move_to(channel)
                     
@@ -48,7 +48,7 @@ class Youtube(commands.Cog, name="YouTube"):
                 embed = discord.Embed(
                     color = discord.Color(0xff0000),
                     timestamp = datetime.utcnow(),
-                    description = '**Not connected to a voice channel!**'
+                    description = "**You're not connected to a voice channel!**"
                 )
 
                 embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -114,9 +114,9 @@ class Youtube(commands.Cog, name="YouTube"):
                 await voice_state.disconnect()
 
                 embed = discord.Embed(
-                color = discord.Color(0xff0000),
-                timestamp = datetime.utcnow(),
-                description = "Desconectando de <#{}> por inatividade...".format(voice_state.channel.id)
+                    color = discord.Color(0xff0000),
+                    timestamp = datetime.utcnow(),
+                    description = "Desconectando de <#{}> por inatividade...".format(voice_state.channel.id)
                 )
 
                 embed.set_footer(icon_url='{}'.format(self.client.user.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(self.client.user.name))
@@ -128,52 +128,64 @@ class Youtube(commands.Cog, name="YouTube"):
     # !volume - adjusts song's volume
     @commands.command(usage="<int>", description="Set new volume")
     async def volume(self, ctx, volume: int):
-        # Volume cant exceed 200%
-        if volume <= 200:
+        # User can only use this command if connected to a vc
+        if ctx.author.voice is not None:
             # Only adjusts the volume if bot is connected to a voice channel
             if ctx.voice_client is None:
                 embed = discord.Embed(
                     color = discord.Color(0xff0000),
                     timestamp = datetime.utcnow(),
-                    description = '**Not connected to a voice channel!**'
+                    description = "**I'm not connected to a voice channel!**"
                 )
 
                 embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
                 await ctx.reply(embed=embed)
             else:
-                ctx.voice_client.source.volume = volume / 100
+                # User can only use this command if connected to the same vc as the bot
+                if ctx.author.voice.channel == ctx.voice_client.channel:
+                    # Volume cant exceed 200%
+                    if volume <= 200:
+                        # if volume is a negative value, set to 0
+                        if volume < 0:
+                            volume = 0
 
-                # if volume is a negative value, set to 0
-                if volume < 0:
-                    volume = 0
-        
-                embed = discord.Embed(
-                    color = discord.Color(0xffc01f),
-                    timestamp = datetime.utcnow(),
-                    description = "Changed volume to {}%".format(volume)
-                )
+                        ctx.voice_client.source.volume = volume / 100
+                
+                        embed = discord.Embed(
+                            color = discord.Color(0xffc01f),
+                            timestamp = datetime.utcnow(),
+                            description = "Changed volume to {}%".format(volume)
+                        )
 
-                embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
-                await ctx.reply(embed=embed)
+                        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+                        await ctx.reply(embed=embed)
+                    else:
+                        embed = discord.Embed(
+                            color = discord.Color(0xff0000),
+                            timestamp = datetime.utcnow(),
+                            description = '**The limit is 200%!**'
+                        )
+
+                        embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+                        await ctx.reply(embed=embed)
+                else:
+                    embed = discord.Embed(
+                        color = discord.Color(0xff0000),
+                        timestamp = datetime.utcnow(),
+                        description = "**You're not connected to the same voice channel as me!**"
+                    )
+
+                    embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+                    await ctx.reply(embed=embed)
         else:
-            if ctx.voice_client is None:
-                embed = discord.Embed(
-                    color = discord.Color(0xff0000),
-                    timestamp = datetime.utcnow(),
-                    description = '**Not connected to a voice channel!**'
-                )
+            embed = discord.Embed(
+                color = discord.Color(0xff0000),
+                timestamp = datetime.utcnow(),
+                description = "**You're not connected to a voice channel!**"
+            )
 
-                embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
-                await ctx.reply(embed=embed)
-            else:
-                embed = discord.Embed(
-                    color = discord.Color(0xff0000),
-                    timestamp = datetime.utcnow(),
-                    description = '**The limit is 200%!**'
-                )
-
-                embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
-                await ctx.reply(embed=embed)
+            embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+            await ctx.reply(embed=embed)
 
     # Checking if arguments are valid
     @volume.error
@@ -201,20 +213,42 @@ class Youtube(commands.Cog, name="YouTube"):
     # !stop - stops song and disconnect bot from voice channel
     @commands.command(description="Stop the current playing song")
     async def stop(self, ctx):
-        # Only disconnects if bot is connected to a voice channel
-        if ctx.voice_client is None:
+        # User can only use this command if connected to a vc
+        if ctx.author.voice is not None:
+            # Only disconnects if bot is connected to a voice channel
+            if ctx.voice_client is None:
+                embed = discord.Embed(
+                    color = discord.Color(0xff0000),
+                    timestamp = datetime.utcnow(),
+                    description = "**I'm not connected to a voice channel!**"
+                )
+
+                embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+                await ctx.reply(embed=embed)
+            else:
+                # User can only use this command if connected to the same vc as the bot
+                if ctx.author.voice.channel == ctx.voice_client.channel:
+                    # Disconnecting and reacting users message
+                    await ctx.voice_client.disconnect()
+                    await ctx.message.add_reaction('<:peepoSad:695438016633634877>')
+                else:
+                    embed = discord.Embed(
+                        color = discord.Color(0xff0000),
+                        timestamp = datetime.utcnow(),
+                        description = "**You're not connected to the same voice channel as me!**"
+                    )
+
+                    embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+                    await ctx.reply(embed=embed)
+        else:
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = '**Not connected to a voice channel!**'
+                description = "**You're not connected to a voice channel!**"
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
             await ctx.reply(embed=embed)
-        else:
-            # Disconnecting and reacting users message
-            await ctx.voice_client.disconnect()
-            await ctx.message.add_reaction('<:peepoSad:695438016633634877>')
 
 
 def setup(client):

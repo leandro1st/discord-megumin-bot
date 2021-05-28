@@ -62,7 +62,7 @@ class Admin(commands.Cog, name="Administrador"):
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = "**Sintaxe incorreta! Use !rename <member> <new nickname>**"
+                description = "**Sintaxe incorreta! Use !rename <member> <new nick>**"
             )
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
             await ctx.reply(embed=embed)
@@ -82,7 +82,7 @@ class Admin(commands.Cog, name="Administrador"):
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = "**Sintaxe incorreta! Use !rename <member> <new nickname>**"
+                description = "**Sintaxe incorreta! Use !rename <member> <new nick>**"
             )
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
             await ctx.reply(embed=embed)
