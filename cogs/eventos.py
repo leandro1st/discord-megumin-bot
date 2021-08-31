@@ -40,10 +40,15 @@ class Eventos(commands.Cog, name="Eventos"):
         if message.content == '<:PogChampion:706621494477717565>':
             await message.add_reaction('<:PogChampion:706621494477717565>')
         if message.content == ':rikkaBongo:':
-            await message.add_reaction('<a:rikkaBongo:697839129257312286>')
-            await message.reply('<a:rikkaBongo:697839129257312286>')
-        if message.content == 'catJAM':
-            await message.add_reaction('<a:catJAM:841531588298145812>')
+            await message.add_reaction('<a:rikkaBongo:878038328333697045>')
+            await message.reply('<a:rikkaBongo:878038328333697045>')
+        if message.content == 'catJAM' or message.content == ':catJAM:':
+            await message.add_reaction('<a:catJAM:882361247725670511>')
+        if message.content.lower() in ["rushia", "uruha rushia", "rushia uruha"]:
+            await message.add_reaction('<a:Rushia_Fukkireta:878040434524426311>')
+            await message.reply('<a:Rushia_Fukkireta:878040434524426311>', mention_author=True)
+        if message.content == ':Rushia_Fukkireta:':
+            await message.add_reaction('<a:Rushia_Fukkireta:878040434524426311>')
         if message.author == self.client.user:
             return
         
@@ -54,8 +59,8 @@ class Eventos(commands.Cog, name="Eventos"):
 
         status1 = ["!help", "with lolis", "Terraria", "osu!", "Visual Studio Code", "Nekopara", "Genshin Impact", "Princess Connect! Re: Dive", "Muse Dash", "Geometry Dash", "Little Witch Nobeta", "Euro Truck Simulator 2", "Apex Legends"]
         status2 = ["conhecimento", "osu!", "!help"]
-        status3 = ["Lo-Fi", "Renai Circulation", "your cries", "Spotify", "GHOST / 星街すいせい", "Minato Aqua - For The Win", "Palette/常闇トワ", "YOASOBI「群青」", "ヨルシカ - 藍二乗", "YUC'e - Future Cake", "ツユ - くらべられっ子"]
-        status4 = ["você", "Sword Art Online", "Koe no Katachi", "Made in Abyss", "Kyoukai no Kanata", "Boku no Hero Academia", "Kimi no Na wa.", "anime", "Re:Zero kara Hajimeru Isekai Seikatsu", "Charlotte", "Tenki no Ko", "Machikado Mazoku", "Karakai Jouzu no Takagi-san", "KonoSuba", "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen", "Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai", "Gotoubun no Hanayome", "Tate no Yuusha no Nariagari", "Hunter x Hunter", "Violet Evergarden", "Shingeki no Kyojin", "Charlotte", "Hotarubi no Mori e", "Minato Aqua", "Uruha Rushia", "Houshou Marine", "Nakiri Ayame", "Hoshimachi Suisei", "Shirakami Fubuki", "Usada Pekora", "Inugami Korone", "Sakura Miko", "Haachama", "Tokoyami Towa", "Tsunomaki Watame", "Nekomata Okayu", "Shirogane Noel", "Amane Kanata"]
+        status3 = ["Lo-Fi", "Renai Circulation", "your cries", "Spotify", "GHOST / 星街すいせい", "Minato Aqua - For The Win", "Palette/常闇トワ", "YOASOBI「群青」", "ヨルシカ - 藍二乗", "YUC'e - Future Cake", "ツユ - くらべられっ子", "Unison【hololive/宝鐘マリン】", "Bluerose / 星街すいせい"]
+        status4 = ["você", "Sword Art Online", "Koe no Katachi", "Made in Abyss", "Kyoukai no Kanata", "Boku no Hero Academia", "Kimi no Na wa.", "anime", "Re:Zero kara Hajimeru Isekai Seikatsu", "Charlotte", "Tenki no Ko", "Machikado Mazoku", "Karakai Jouzu no Takagi-san", "KonoSuba", "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen", "Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai", "Gotoubun no Hanayome", "Tate no Yuusha no Nariagari", "Hunter x Hunter", "Violet Evergarden", "Shingeki no Kyojin", "Charlotte", "Hotarubi no Mori e", "Minato Aqua", "Uruha Rushia", "Houshou Marine", "Nakiri Ayame", "Hoshimachi Suisei", "Shirakami Fubuki", "Usada Pekora", "Inugami Korone", "Sakura Miko", "Haachama", "Tokoyami Towa", "Tsunomaki Watame", "Nekomata Okayu", "Shirogane Noel", "Amane Kanata", "Ceres Fauna", "Nanashi Mumei"]
         # Order --> playing, streaming, listening, watching
 
         msg1 = cycle(status1)

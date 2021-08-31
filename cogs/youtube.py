@@ -32,7 +32,7 @@ class Youtube(commands.Cog, name="YouTube"):
                 ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
 
                 # reacting with catJAM
-                await ctx.message.add_reaction('<a:catJAM:841531588298145812>')
+                await ctx.message.add_reaction('<a:catJAM:882361247725670511>')
 
                 embed = discord.Embed(
                     color = discord.Color(0xf8ff1f),

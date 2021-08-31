@@ -117,7 +117,7 @@ class Osu(commands.Cog, name="osu!"):
                 embed = discord.Embed(
                     color = discord.Color(0xff0000),
                     timestamp = datetime.utcnow(),
-                    description = "**Usuário não existe! <a:rikkaBongo:697839129257312286>**"
+                    description = "**Usuário não existe! <a:rikkaBongo:878038328333697045>**"
                 )
 
                 embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -231,7 +231,7 @@ class Osu(commands.Cog, name="osu!"):
                 embed = discord.Embed(
                     color = discord.Color(0xff0000),
                     timestamp = datetime.utcnow(),
-                    description = "**Usuário não existe! <a:rikkaBongo:697839129257312286>**"
+                    description = "**Usuário não existe! <a:rikkaBongo:878038328333697045>**"
                 )
 
                 embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))

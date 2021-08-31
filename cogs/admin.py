@@ -208,7 +208,7 @@ class Admin(commands.Cog, name="Administrador"):
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = "**Preciso de um usuário pra mutar! <a:rikkaBongo:697839129257312286>**"
+                description = "**Preciso de um usuário pra mutar! <a:rikkaBongo:878038328333697045>**"
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -230,7 +230,7 @@ class Admin(commands.Cog, name="Administrador"):
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = "**Mencione um membro do canal! <a:rikkaBongo:697839129257312286>**"
+                description = "**Mencione um membro do canal! <a:rikkaBongo:878038328333697045>**"
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -278,7 +278,7 @@ class Admin(commands.Cog, name="Administrador"):
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = "**Preciso de um usuário pra desmutar! <a:rikkaBongo:697839129257312286>**"
+                description = "**Preciso de um usuário pra desmutar! <a:rikkaBongo:878038328333697045>**"
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -300,7 +300,7 @@ class Admin(commands.Cog, name="Administrador"):
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = "**Mencione um membro do canal! <a:rikkaBongo:697839129257312286>**"
+                description = "**Mencione um membro do canal! <a:rikkaBongo:878038328333697045>**"
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -422,7 +422,7 @@ class Admin(commands.Cog, name="Administrador"):
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = "**Preciso de um usuário pra expulsar! <a:rikkaBongo:697839129257312286>**"
+                description = "**Preciso de um usuário pra expulsar! <a:rikkaBongo:878038328333697045>**"
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -444,7 +444,7 @@ class Admin(commands.Cog, name="Administrador"):
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = "**Mencione um membro do canal! <a:rikkaBongo:697839129257312286>**"
+                description = "**Mencione um membro do canal! <a:rikkaBongo:878038328333697045>**"
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -520,7 +520,7 @@ class Admin(commands.Cog, name="Administrador"):
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = "**Preciso de um usuário pra banir! <a:rikkaBongo:697839129257312286>**"
+                description = "**Preciso de um usuário pra banir! <a:rikkaBongo:878038328333697045>**"
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -542,7 +542,7 @@ class Admin(commands.Cog, name="Administrador"):
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = "**Mencione um membro do canal! <a:rikkaBongo:697839129257312286>**"
+                description = "**Mencione um membro do canal! <a:rikkaBongo:878038328333697045>**"
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
@@ -626,7 +626,7 @@ class Admin(commands.Cog, name="Administrador"):
             embed = discord.Embed(
                 color = discord.Color(0xff0000),
                 timestamp = datetime.utcnow(),
-                description = "**Preciso de um usuário pra desbanir! <a:rikkaBongo:697839129257312286>**"
+                description = "**Preciso de um usuário pra desbanir! <a:rikkaBongo:878038328333697045>**"
             )
 
             embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
