@@ -1,12 +1,12 @@
 git+https://github.com/Rapptz/discord.py
-discord.py==1.7.2
+youtube_dl==2021.6.6
+discord.py==1.7.3
 discord.py[voice]
 saucenao_api==2.4.0
-requests==2.23.0
-pytz==2021.1
-nekos.py==1.0.3
-youtube_dl==2021.5.16
 tweepy==4.0.1
+pytz==2021.3
+nekos.py==1.0.3
+requests==2.26.0
 discord==1.7.3
 python_dateutil==2.8.2
 PyNaCl==1.4.0

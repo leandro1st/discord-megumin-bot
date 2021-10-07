@@ -110,37 +110,44 @@ class Eventos(commands.Cog, name="Eventos"):
 
             # Material
             if 'material' in best.raw['data']:
-                embed.add_field(name="Material", value="{}".format(best.raw['data']['material']), inline=False)
+                if best.raw['data']['material']:
+                    embed.add_field(name="Material", value="{}".format(best.raw['data']['material']), inline=False)
 
             # Characters
             if 'characters' in best.raw['data']:
-                embed.add_field(name="Characters", value="{}".format(best.raw['data']['characters']), inline=False)
+                if best.raw['data']['characters']:
+                    embed.add_field(name="Characters", value="{}".format(best.raw['data']['characters']), inline=False)
 
             # If source is from an anime
             if isinstance(best, VideoSauce):
                 # Part/episode
                 if 'part' in best.raw['data']:
-                    embed.add_field(name="Episode", value="{}".format(best.raw['data']['part']), inline=False)
+                    if best.raw['data']['part']:
+                        embed.add_field(name="Episode", value="{}".format(best.raw['data']['part']), inline=False)
                 # Year
                 if 'year' in best.raw['data']:
-                    embed.add_field(name="Year", value="{}".format(best.raw['data']['year']), inline=False)
+                    if best.raw['data']['year']:
+                        embed.add_field(name="Year", value="{}".format(best.raw['data']['year']), inline=False)
                 # Estimated time
                 if 'est_time' in best.raw['data']:
-                    embed.add_field(name="Est Time", value="{}".format(best.raw['data']['est_time']), inline=False)
+                    if best.raw['data']['est_time']:
+                        embed.add_field(name="Est Time", value="{}".format(best.raw['data']['est_time']), inline=False)
             # If source is from a book
             elif isinstance(best, BookSauce):
                 # Part/volume
                 if 'part' in best.raw['data']:
-                    embed.add_field(name="Part", value="{}".format(best.raw['data']['part']), inline=False)            
+                    if best.raw['data']['part']:
+                        embed.add_field(name="Part", value="{}".format(best.raw['data']['part']), inline=False)            
 
             # Source
             if 'source' in best.raw['data']:
-                # Pixiv link because https://i.pximg.net is 'broken'
-                if re.compile('^https:\/\/i\.pximg\.net').search(best.raw['data']['source']):
-                    embed.add_field(name="Source", value='https://www.pixiv.net/en/artworks/' + best.raw['data']['source'].split('/')[-1], inline=False)
-                # Other links
-                else:
-                    embed.add_field(name="Source", value=best.raw['data']['source'], inline=False)
+                if best.raw['data']['source']:
+                    # Pixiv link because https://i.pximg.net is 'broken'
+                    if re.compile('^https:\/\/i\.pximg\.net').search(best.raw['data']['source']):
+                        embed.add_field(name="Source", value='https://www.pixiv.net/en/artworks/' + best.raw['data']['source'].split('/')[-1], inline=False)
+                    # Other links
+                    else:
+                        embed.add_field(name="Source", value=best.raw['data']['source'], inline=False)
 
             # Links
             for count, link in enumerate(best.urls, start=1):
