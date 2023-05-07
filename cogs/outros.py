@@ -19,6 +19,7 @@ api = tweepy.API(auth)
 
 # Replace the key with your own
 sauce = SauceNao(environ.get('SauceNao_key'))
+sauce2 = SauceNao(environ.get('SauceNao_key2'))
 
 
 class Outros(commands.Cog, name="Diversos"):
