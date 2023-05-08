@@ -58,17 +58,32 @@ class Eventos(commands.Cog, name="Eventos"):
         if message.author == self.client.user:
             return
 
-    # Method that is going to search for sauce
 
+    # Method that is going to search for sauce
     async def search_sauce(self, message, url):
-        # Getting tweet id
-        id = re.search('/status/(\d+)', url).group(1)
-        status = api.get_status(id, tweet_mode='extended')
+        try:
+            # Getting tweet id
+            id = re.search('/status/(\d+)', url).group(1)
+            status = api.get_status(id, tweet_mode='extended')
+        except Exception as error:
+            embed = discord.Embed(
+                color=discord.Color(0xff0000),
+                timestamp=datetime.utcnow(),
+                description="**{}**".format(error)
+            )
+
+            embed.set_footer(icon_url='{}'.format(message.author.avatar_url_as(
+                format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(message.author.name))
+            await message.reply(embed=embed)
+
+            # return to stop the execution of the method
+            return
 
         # If an image/video is included on the tweet
         if 'media' in status.entities:
             # Getting only first image
             url_twitter = status.extended_entities['media'][0]['media_url_https']
+            
             # Results
             try:
                 try:
@@ -85,6 +100,9 @@ class Eventos(commands.Cog, name="Eventos"):
                 embed.set_footer(icon_url='{}'.format(message.author.avatar_url_as(
                     format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(message.author.name))
                 await message.reply(embed=embed)
+
+                # return to stop the execution of the method
+                return
         # No media
         else:
             embed = discord.Embed(
@@ -181,8 +199,8 @@ class Eventos(commands.Cog, name="Eventos"):
             format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(message.author.name))
         await message.reply(embed=embed)
 
-    # Random status
 
+    # Random status
     async def change_status(self):
         await self.client.wait_until_ready()
 
@@ -191,8 +209,8 @@ class Eventos(commands.Cog, name="Eventos"):
         status2 = ["conhecimento", "osu!", "!help"]
         status3 = ["Lo-Fi", "Renai Circulation", "your cries", "Spotify", "GHOST / 星街すいせい", "Minato Aqua - For The Win", "Palette/常闇トワ",
                    "YOASOBI「群青」", "ヨルシカ - 藍二乗", "YUC'e - Future Cake", "ツユ - くらべられっ子", "Unison【hololive/宝鐘マリン】", "Bluerose / 星街すいせい"]
-        status4 = ["você", "Sword Art Online", "Koe no Katachi", "Made in Abyss", "Kyoukai no Kanata", "Boku no Hero Academia", "Kimi no Na wa.", "anime", "Re:Zero kara Hajimeru Isekai Seikatsu", "Charlotte", "Tenki no Ko", "Machikado Mazoku", "Karakai Jouzu no Takagi-san", "KonoSuba", "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen", "Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai", "Gotoubun no Hanayome",
-                   "Tate no Yuusha no Nariagari", "Hunter x Hunter", "Violet Evergarden", "Shingeki no Kyojin", "Charlotte", "Hotarubi no Mori e", "Minato Aqua", "Uruha Rushia", "Houshou Marine", "Nakiri Ayame", "Hoshimachi Suisei", "Shirakami Fubuki", "Usada Pekora", "Inugami Korone", "Sakura Miko", "Haachama", "Tokoyami Towa", "Tsunomaki Watame", "Nekomata Okayu", "Shirogane Noel", "Amane Kanata", "Ceres Fauna", "Nanashi Mumei"]
+        status4 = ["you", "Sword Art Online", "Koe no Katachi", "Made in Abyss", "Kyoukai no Kanata", "Boku no Hero Academia", "Kimi no Na wa.", "anime", "Re:Zero kara Hajimeru Isekai Seikatsu", "Charlotte", "Tenki no Ko", "Machikado Mazoku", "Karakai Jouzu no Takagi-san", "KonoSuba", "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen", "Seishun Buta Yarou wa Bunny Girl Senpai no Yume wo Minai", "Gotoubun no Hanayome",
+                   "Tate no Yuusha no Nariagari", "Hunter x Hunter", "Violet Evergarden", "Shingeki no Kyojin", "Charlotte", "Hotarubi no Mori e", "Minato Aqua", "Uruha Rushia", "Houshou Marine", "Nakiri Ayame", "Hoshimachi Suisei", "Shirakami Fubuki", "Usada Pekora", "Inugami Korone", "Sakura Miko", "Haachama", "Tokoyami Towa", "Tsunomaki Watame", "Nekomata Okayu", "Shirogane Noel", "Amane Kanata", "Ceres Fauna", "Nanashi Mumei", "Sakamata Chloe", "Amashiro Natsuki", "La+ Darknesss", "Hakui Koyori"]
         # Order --> playing, streaming, listening, watching
 
         msg1 = cycle(status1)
