@@ -6,6 +6,7 @@ from pytz import timezone #timezone()
 import re
 import requests
 from saucenao_api import SauceNao, VideoSauce, BookSauce
+from saucenao_api.errors import UnknownClientError
 import tweepy
 from os import environ
 
@@ -160,8 +161,25 @@ class Outros(commands.Cog, name="Diversos"):
             if 'media' in status.entities:
                 # Getting only first image
                 url_twitter = status.extended_entities['media'][0]['media_url_https']
+
                 # Results
-                results = sauce.from_url(url_twitter)
+                try:
+                    try:
+                        results = sauce.from_url(url_twitter)
+                    except:
+                        results = sauce2.from_url(url_twitter)
+                except Exception as error:
+                    embed = discord.Embed(
+                        color = discord.Color(0xff0000),
+                        timestamp = datetime.utcnow(),
+                        description = "**{}**".format(error)
+                    )
+
+                    embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+                    await ctx.reply(embed=embed)
+
+                    # return to stop the execution of the method
+                    return
             # No media
             else:
                 embed = discord.Embed(
@@ -178,15 +196,30 @@ class Outros(commands.Cog, name="Diversos"):
         # Other links
         else:
             # Trying to find the source
+            # Results
             try:
-                # Results
-                results = sauce.from_url(url)
-            # No media
-            except Exception as ex:
+                try:
+                    results = sauce.from_url(url)
+                except:
+                    results = sauce2.from_url(url)
+            # No media perhaps
+            except UnknownClientError as error:
                 embed = discord.Embed(
                     color = discord.Color(0xff0000),
                     timestamp = datetime.utcnow(),
                     description = "**There is nothing to search for!**"
+                )
+
+                embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
+                await ctx.reply(embed=embed)
+
+                # return to stop the execution of the method
+                return
+            except Exception as error:
+                embed = discord.Embed(
+                    color = discord.Color(0xff0000),
+                    timestamp = datetime.utcnow(),
+                    description = "**{}**".format(error)
                 )
 
                 embed.set_footer(icon_url='{}'.format(ctx.message.author.avatar_url_as(format=None, static_format='png')).split("?")[0], text="Gerado por {0}".format(ctx.message.author.name))
